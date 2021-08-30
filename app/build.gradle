@@ -16,19 +16,38 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-  
+    signingConfigs {
+        release {
+            Properties properties = new Properties()
+            properties.load(rootProject.file("password.properties").newDataInputStream())
+            //def password = properties.getProperty("storePassword","") // FIXME
+            def password = "123456"
+
+            storeFile file("test.jks")
+            storePassword = password
+            keyAlias 'test'
+            keyPassword =password
+        }
+    }
 
     buildTypes {
         release {
-
             signingConfig signingConfigs.release
-
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+            buildConfigField "String", "API_KEY",'"release"'
         }
         debug{
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY",'"debug"'
+        }
+
+        notest {
+            initWith debug
+            versionNameSuffix "-notest"
+            buildConfigField "String", "API_KEY",'"notest"'
         }
     }
     compileOptions {
@@ -37,6 +56,37 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    flavorDimensions 'version','student'
+    productFlavors {
+        freeConfig {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
+        paidConfig {
+            dimension 'version'
+            versionNameSuffix '.paid'
+        }
+        DConfig {
+            dimension 'student'
+            versionNameSuffix '.D'
+        }
+        SConfig {
+            dimension 'student'
+            versionNameSuffix '.S'
+        }
+        OConfig {
+            dimension 'student'
+            versionNameSuffix '.O'
+        }
+        GConfig {
+            dimension 'student'
+            versionNameSuffix '.G'
+        }
+        MConfig {
+            dimension 'student'
+            versionNameSuffix '.M'
+        }
     }
 }
 
