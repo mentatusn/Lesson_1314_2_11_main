@@ -1,5 +1,6 @@
 package ru.geekbrains.lesson_1423_2_11_main
 
+import android.app.Instrumentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -9,6 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Toast.makeText(this, BuildConfig.PASSWORD,Toast.LENGTH_SHORT).show()
+        val soldier = Soldier()
+        soldier.instrument = Instruments.Shovel()
+        soldier.instrument = Instruments.Brush()
+        soldier.instrument = Instruments.Gun()
+        soldier.instrument.doWork()
     }
 }
 
@@ -22,70 +28,40 @@ open class Machine:Unit(){
 
 
 
-/*open class Soldier:Unit(){
-
-}*/
-
-/*open class Soldier:Unit(){
-    fun paint(){}
-}*/
-
-
-
-interface ChooseDirectionSergeant{
-    fun chooseDirectionSergeant()
+open class Soldier:Unit(){
+    lateinit var instrument: Instrument
 }
 
-interface ChooseDirectionGeneral{
-    fun chooseDirectionGeneral()
-}
+open class SoldierWithShovel:Soldier(){
 
-interface SoldierAsMan{
-    fun introduce()
 }
+open class SoldierWithBrush:Soldier(){
 
-interface SoldierChooseDirection{
-    fun chooseDirection()
 }
+open class SoldierWithGun:Soldier(){
 
-interface SoldierPainter{
-    fun paint()
-    fun paintTheBorder()
-    fun paintTheGrass()
 }
-
-interface SoldierExcavator{
-    fun excavate()
-    fun excavateDacha()
-    fun excavateCountryHouse()
-}
-
-class Soldier:Unit(),SoldierAsMan,SoldierChooseDirection,SoldierPainter{
-    override fun introduce() {
-        TODO("Not yet implemented")
+sealed class Instruments{
+    class Shovel:Instrument() {
+        override fun doWork() {
+            TODO("Not yet implemented")
+        }
     }
-
-    override fun chooseDirection() {
-        TODO("Not yet implemented")
+    class Brush:Instrument() {
+        override fun doWork() {
+            TODO("Not yet implemented")
+        }
     }
-
-    override fun paint() {
-        TODO("Not yet implemented")
+    class Gun:Instrument() {
+        override fun doWork() {
+            TODO("Not yet implemented")
+        }
     }
-
-    override fun paintTheBorder() {
-        TODO("Not yet implemented")
-    }
-
-    override fun paintTheGrass() {
-        TODO("Not yet implemented")
-    }
-
-
 }
-/*open class SuperSoldier:Soldier() {
-    override fun paint(){
 
-    }
-    fun excavate(){}
-}*/
+abstract class Instrument{
+    abstract fun doWork()
+}
+
+
+
