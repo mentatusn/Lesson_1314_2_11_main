@@ -11,3 +11,35 @@ class MainActivity : AppCompatActivity() {
         //Toast.makeText(this, BuildConfig.PASSWORD,Toast.LENGTH_SHORT).show()
     }
 }
+
+open class Unit(){
+
+}
+
+open class Machine:Unit(){
+
+}
+
+open class Soldier:Unit(){
+    var instruments: Instruments?=null
+}
+
+/** BAD */
+class SoldierWithShovel:Soldier(){
+
+}
+class SoldierWithBrush:Soldier(){
+
+}
+class SoldierWithGun:Soldier(){
+
+}
+
+/** Good */
+
+sealed class Instruments{
+    class Brush():Instruments()
+    class Shovel():Instruments()
+    class Gun():Instruments()
+}
+
