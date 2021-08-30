@@ -16,12 +16,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     signingConfigs {
         release {
             Properties properties = new Properties()
             properties.load(rootProject.file("password.properties").newDataInputStream())
-            //def password = properties.getProperty("storePassword","") // FIXME
-            def password = "123456"
+            def password = properties.getProperty("password") // FIXME
+           // def password = "123456"
 
             storeFile file("test.jks")
             storePassword = password

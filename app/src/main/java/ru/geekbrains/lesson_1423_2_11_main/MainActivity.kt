@@ -10,14 +10,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Toast.makeText(this, BuildConfig.PASSWORD,Toast.LENGTH_SHORT).show()
-        val soldier = Soldier()
+       /* val soldier = Soldier()
         soldier.instrument = Instruments.Shovel()
         soldier.instrument = Instruments.Brush()
         soldier.instrument = Instruments.Gun()
-        soldier.instrument.doWork()
+        soldier.instrument.doWork()*/
     }
 }
-
+/*
 open class Unit(){
 
 }
@@ -61,7 +61,7 @@ sealed class Instruments{
 
 abstract class Instrument{
     abstract fun doWork()
-}
+}*/
 
 
 
