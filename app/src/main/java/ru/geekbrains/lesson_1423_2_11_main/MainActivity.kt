@@ -20,26 +20,72 @@ open class Machine:Unit(){
 
 }
 
-open class Soldier:Unit(){
-    var instruments: Instruments?=null
+
+
+/*open class Soldier:Unit(){
+
+}*/
+
+/*open class Soldier:Unit(){
+    fun paint(){}
+}*/
+
+
+
+interface ChooseDirectionSergeant{
+    fun chooseDirectionSergeant()
 }
 
-/** BAD */
-class SoldierWithShovel:Soldier(){
-
-}
-class SoldierWithBrush:Soldier(){
-
-}
-class SoldierWithGun:Soldier(){
-
+interface ChooseDirectionGeneral{
+    fun chooseDirectionGeneral()
 }
 
-/** Good */
-
-sealed class Instruments{
-    class Brush():Instruments()
-    class Shovel():Instruments()
-    class Gun():Instruments()
+interface SoldierAsMan{
+    fun introduce()
 }
 
+interface SoldierChooseDirection{
+    fun chooseDirection()
+}
+
+interface SoldierPainter{
+    fun paint()
+    fun paintTheBorder()
+    fun paintTheGrass()
+}
+
+interface SoldierExcavator{
+    fun excavate()
+    fun excavateDacha()
+    fun excavateCountryHouse()
+}
+
+class Soldier:Unit(),SoldierAsMan,SoldierChooseDirection,SoldierPainter{
+    override fun introduce() {
+        TODO("Not yet implemented")
+    }
+
+    override fun chooseDirection() {
+        TODO("Not yet implemented")
+    }
+
+    override fun paint() {
+        TODO("Not yet implemented")
+    }
+
+    override fun paintTheBorder() {
+        TODO("Not yet implemented")
+    }
+
+    override fun paintTheGrass() {
+        TODO("Not yet implemented")
+    }
+
+
+}
+/*open class SuperSoldier:Soldier() {
+    override fun paint(){
+
+    }
+    fun excavate(){}
+}*/
